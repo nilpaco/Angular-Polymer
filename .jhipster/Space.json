@@ -1,0 +1,30 @@
+{
+    "relationships": [],
+    "fields": [
+        {
+            "fieldId": 1,
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 2,
+            "fieldName": "img",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldId": 3,
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldId": 4,
+            "fieldName": "price",
+            "fieldType": "Double"
+        }
+    ],
+    "changelogDate": "20160106123807",
+    "dto": "no",
+    "service": "no",
+    "pagination": "pagination"
+}

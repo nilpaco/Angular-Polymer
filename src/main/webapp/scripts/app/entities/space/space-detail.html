@@ -1,0 +1,75 @@
+
+    <script>
+        $( "paper-toolbar" ).addClass( "tall" );
+    </script>
+    <div class="content horizontal around-justified layout">
+        <paper-material elevation="1" class="over-content">
+            <div class="profile-img horizontal layout center pad">
+                <img src="http://placehold.it/50x50">
+                <h2>Nombre empresa</h2>
+            </div>
+            <div class="horizontal around-justified layout wrap pad">
+                <div class="horizontal layout center">
+                    <iron-icon icon="social:people" class="big"></iron-icon>
+                    <span>4</span>
+                </div>
+                <div class="horizontal layout center">
+                    <iron-icon icon="icons:event" class="big"></iron-icon>
+                    <span>Sep to Dec, 2016</span>
+                </div>
+                <div class="horizontal layout center">
+                    <iron-icon icon="icons:credit-card" class="big"></iron-icon>
+                    <span>700</span>
+                </div>
+                <div class="horizontal layout center">
+                    <iron-icon icon="icons:query-builder" class="big"></iron-icon>
+                    <span>7:00 to 18:00</span>
+                </div>
+            </div>
+            <div class="spacer"></div>
+            <div class="pad">
+                <h2 class="paper-font-title">Descripción</h2>
+                <div class="descripcion">Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do: once or twice she had peeped into the book her sister was reading, but it had no pictures or conversations in it, 'and what is the use of a book,' thought Alice 'without pictures or conversation?'
+                    <p/>
+                    So she was considering in her own mind (as well as she could, for the hot day made her feel very sleepy and stupid), whether the pleasure of making a daisy-chain would be worth the trouble of getting up and picking the daisies, when suddenly a White Rabbit with pink eyes ran close by her.
+                </div>
+            </div>
+            <paper-button on-click="toggle" style="color: #ff4081">+ Show more</paper-button>
+            <iron-collapse id="collapse">
+                <div class="pad">
+                    <h2 class="paper-font-title">Servicios</h2>
+                    <div class="icon-content horizontal layout wrap center" style="width: 100%">
+                        <div><iron-icon icon="notification:wifi"></iron-icon><span>Wifi</span></div>
+                        <div><iron-icon icon="maps:directions-subway"></iron-icon><span>Metro</span></div>
+                        <div><iron-icon icon="maps:local-printshop"></iron-icon><span>Impresora</span></div>
+                        <div><iron-icon icon="icons:event-seat"></iron-icon><span>Sala reuniones</span></div>
+                        <div><iron-icon icon="icons:lock"></iron-icon><span>Alarma</span></div>
+                        <div><iron-icon icon="maps:restaurant-menu"></iron-icon><span>Comedor</span></div>
+                        <div><iron-icon icon="maps:local-parking"></iron-icon><span>Parking</span></div>
+                        <div><iron-icon icon="hardware:toys"></iron-icon><span>Aire acondicionado</span></div>
+                    </div>
+                </div>
+            </iron-collapse>
+            <div>
+                <h2 class="paper-font-title pad">Fotos</h2>
+                <div id="image-row">
+                    <iron-image sizing="cover" src="http://loremflickr.com/600/400"></iron-image>
+                    <iron-image sizing="cover" src="http://loremflickr.com/600/400"></iron-image>
+                    <iron-image sizing="cover" src="http://lorempixel.com/600/400"></iron-image>
+                    <iron-image sizing="cover" src="http://lorempixel.com/600/400"></iron-image>
+                </div>
+            </div>
+            <div class="map">
+                <google-map address="mare de deu dels reis, 11"></google-map>
+            </div>
+            <div class="spacer"></div>
+            <div class="booking pad">
+                <div class="horizontal justified layout">
+                    <div style="width: 45%"><paper-input label="Nombre"></paper-input></div>
+                    <div style="width: 45%"><paper-input typle="email" label="Email"></paper-input></div>
+                </div>
+                <paper-input label="Escribe el mensaje..."></paper-input>
+                <paper-button class="book-button" raised>Send</paper-button>
+            </div>
+        </paper-material>
+    </div>
