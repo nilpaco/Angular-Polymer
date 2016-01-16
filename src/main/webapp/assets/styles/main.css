@@ -266,8 +266,10 @@ input.app-bar{
     border: 0;
     border-radius: 2px;
     -webkit-appearance: none;
-    background-color: rgba(0,0,0,0.2);
+    background-color: rgba(255,255,255,0.25);
     color:white;
+    margin: auto;
+    max-width: 600px;
 }
 #mainContainer > div {
     background-color: #fafafa;
@@ -396,5 +398,32 @@ div.descripcion{
 
 #topBar > a{
     color: #fff;
+    text-decoration: none;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+paper-scroll-header-panel {
+    height: 100%;
+}
+
+::-webkit-input-placeholder {
+    color:    white;
+}
+:-moz-placeholder {
+    color:    white;
+    opacity:  1;
+}
+::-moz-placeholder {
+    color:    white;
+    opacity:  1;
+}
+:-ms-input-placeholder {
+    color: white;
+}
+
+a:hover {
     text-decoration: none;
 }

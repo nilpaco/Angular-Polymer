@@ -41,7 +41,9 @@
     "iron-image": "PolymerElements/iron-image#~1.0.4",
     "iron-icons": "PolymerElements/iron-icons#~1.1.0",
     "iron-collapse": "PolymerElements/iron-collapse#~1.0.5",
-    "google-map": "GoogleWebComponents/google-map#~1.1.7"
+    "google-map": "GoogleWebComponents/google-map#~1.1.7",
+    "paper-scroll-header-panel": "PolymerElements/paper-scroll-header-panel#~1.0.14",
+    "paper-dialog": "PolymerElements/paper-dialog#~1.0.3"
   },
   "devDependencies": {
     "angular-mocks": "1.4.8",

@@ -1,27 +1,33 @@
-<div>
+<div class="container-fluid">
     <h2 translate="phipsterApp.space.home.title">Spaces</h2>
     <jh-alert></jh-alert>
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <button class="btn btn-primary" ui-sref="space.new">
+                <paper-button raised ui-sref="space.new">
                     <span class="glyphicon glyphicon-flash"></span> <span translate="phipsterApp.space.home.createLabel">Create a new Space</span>
-                </button>
+                </paper-button>
             </div>
             <div class="col-md-8">
                 <form name="searchForm" class="form-inline">
                     <div class="form-group">
-                        <input type="text" class="form-control" ng-model="searchQuery" id="searchQuery" placeholder="query">
                     </div>
-                    <button class="btn btn-info" ng-click="search()"><span class="glyphicon glyphicon-search"></span> <span>Search a Space</span>
+                    <button style="display: none !important;" id="trigger" class="btn btn-info" ng-click="search()"><span class="glyphicon glyphicon-search"></span> <span>Search a Space</span>
                     </button>
                 </form>
             </div>
         </div>
     </div>
+    <script>
+        $("#searchQuery").keyup(function(event){
+            if(event.keyCode == 13){
+                $("#trigger").click();
+            }
+        });
+    </script>
 
     <div class="table-responsive">
-        <table class="table table-striped">
+        <div class="table table-striped">
             <thead>
                 <tr jh-sort="predicate" ascending="reverse" callback="loadAll()">
                     <th jh-sort-by="id"><span translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
@@ -32,35 +38,40 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
-                <tr ng-repeat="space in spaces track by space.id">
-                    <td><a ui-sref="space.detail({id:space.id})">{{space.id}}</a></td>
-                    <td>{{space.name}}</td>
-                    <td>
-                        <img data-ng-src="{{'data:' + space.imgContentType + ';base64,' + space.img}}" style="max-height: 30px;" ng-if="space.img"/> {{space.imgContentType}} {{byteSize(space.img)}}
-                    </td>
-                    <td>{{space.description}}</td>
-                    <td>{{space.price}}</td>
-                    <td>
-                        <button type="submit"
-                                ui-sref="space.detail({id:space.id})"
-                                class="btn btn-info btn-sm">
-                            <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
-                        </button>
-                        <button type="submit"
-                                ui-sref="space.edit({id:space.id})"
-                                class="btn btn-primary btn-sm">
-                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
-                        </button>
-                        <button type="submit"
-                                ui-sref="space.delete({id:space.id})"
-                                class="btn btn-danger btn-sm">
-                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+            <div class="row">
+                <div class="col-sm-6 col-md-4" ng-repeat="space in spaces track by space.id">
+                        <div class="thumbnail">
+                            <a ui-sref="space.detail({id:space.id})">
+
+                            <img data-ng-src="{{'data:' + space.imgContentType + ';base64,' + space.img}}" style="height: 100px;" ng-if="space.img"/>
+                            <div class="caption">
+                                <h3>{{space.name}}</h3>
+                                <p>{{space.description}}</p>
+                                <p>
+                                <button type="submit"
+                                        ui-sref="space.detail({id:space.id})"
+                                        class="btn btn-info btn-sm">
+                                    <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
+                                </button>
+                                <button type="submit"
+                                        ui-sref="space.edit({id:space.id})"
+                                        class="btn btn-primary btn-sm">
+                                    <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                                </button>
+                                <button type="submit"
+                                        ui-sref="space.delete({id:space.id})"
+                                        class="btn btn-danger btn-sm">
+                                    <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                                </button>
+                                </p>
+                            </div>
+                            </a>
+                        </div>
+
+            </div>
+
+            </div>
+        </div>
     </div>
     <div class="text-center">
         <uib-pagination class="pagination-sm" total-items="totalItems" ng-model="page" ng-change="loadAll()"></uib-pagination>

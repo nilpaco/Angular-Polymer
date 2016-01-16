@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css assets/styles/vendor.css -->
-        <!-- bower:css -->
+        <!-- bower:css         -->
         <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
         <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
         <!-- endbower -->
@@ -27,11 +27,11 @@
         <!--<div ng-show="{{ENV === 'dev'}}" class="development" ng-cloak=""></div>-->
 
     <paper-drawer-panel force-narrow id="paperDrawerPanel">
-        <paper-header-panel drawer mode="seamed">
+        <paper-scroll-header-panel drawer mode="seamed">
             <paper-toolbar>
                 <a href="#/">Application</a>
             </paper-toolbar>
-            <paper-menu selected="0">
+            <paper-menu>
                 <paper-item>
                     <iron-icon icon="android" item-icon></iron-icon>
                     <a href="#/spaces">Tus espacios</a>
@@ -49,26 +49,24 @@
                     <a href="#/settings">Ajustes</a>
                 </paper-item>
             </paper-menu>
-        </paper-header-panel>
-        <paper-header-panel main>
-            <paper-toolbar>
+        </paper-scroll-header-panel>
+        <paper-scroll-header-panel main condenses>
+            <paper-toolbar class="tall">
                 <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
-                <a href="#/">Title</a>
-                <div class="flex inside-app-bar">
-                    <input type="search" id="query" autocomplete="off" placeholder="Search Elements" class="style-scope app-bar" id="caja">
+                        <span href="#/" class="title">Title</span>
+                <span class="bottom title flex"></span>
+                <div class="bottom">
+                    <input type="search" ng-model="searchQuery" id="searchQuery" id="query" autocomplete="off" placeholder="Search Elements" class="style-scope app-bar bottom" id="caja">
                 </div>
-                <paper-icon-button icon="search"></paper-icon-button>
+                <span class="bottom title flex"></span>
             </paper-toolbar>
-                <div class="well" ui-view="content"></div>
+                <div class="well" ui-view="content" class="container"></div>
 
                 <div class="footer">
                     <p translate="footer">This is your footer</p>
                 </div>
-        </paper-header-panel>
+        </paper-scroll-header-panel>
     </paper-drawer-panel>
-    <script>
-        $( "paper-toolbar" ).removeClass( "tall" );
-    </script>
 
     <!-- Google Analytics: uncomment and change UA-XXXXX-X to be your site's ID.
     <script>
@@ -102,6 +100,8 @@
         <script src="bower_components/json3/lib/json3.js"></script>
         <script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
         <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+        <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+        <script src="bower_components/web-animations-js/web-animations.min.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
 

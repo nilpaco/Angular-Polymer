@@ -1,12 +1,15 @@
+<style is="custom-style">
+    .flex-center-justified {
+        @apply(--layout-horizontal);
+        @apply(--layout-center-justified);
+    }
+</style>
 
-    <script>
-        $( "paper-toolbar" ).addClass( "tall" );
-    </script>
-    <div class="content horizontal around-justified layout">
+<div class="container flex-center-justified">
         <paper-material elevation="1" class="over-content">
             <div class="profile-img horizontal layout center pad">
                 <img src="http://placehold.it/50x50">
-                <h2>Nombre empresa</h2>
+                <h2>{{space.title}}</h2>
             </div>
             <div class="horizontal around-justified layout wrap pad">
                 <div class="horizontal layout center">
@@ -19,7 +22,7 @@
                 </div>
                 <div class="horizontal layout center">
                     <iron-icon icon="icons:credit-card" class="big"></iron-icon>
-                    <span>700</span>
+                    <span>{{space.price}}</span>
                 </div>
                 <div class="horizontal layout center">
                     <iron-icon icon="icons:query-builder" class="big"></iron-icon>
@@ -29,10 +32,7 @@
             <div class="spacer"></div>
             <div class="pad">
                 <h2 class="paper-font-title">Descripción</h2>
-                <div class="descripcion">Alice was beginning to get very tired of sitting by her sister on the bank, and of having nothing to do: once or twice she had peeped into the book her sister was reading, but it had no pictures or conversations in it, 'and what is the use of a book,' thought Alice 'without pictures or conversation?'
-                    <p/>
-                    So she was considering in her own mind (as well as she could, for the hot day made her feel very sleepy and stupid), whether the pleasure of making a daisy-chain would be worth the trouble of getting up and picking the daisies, when suddenly a White Rabbit with pink eyes ran close by her.
-                </div>
+                <div class="descripcion">{{space.description}}</div>
             </div>
             <paper-button on-click="toggle" style="color: #ff4081">+ Show more</paper-button>
             <iron-collapse id="collapse">
@@ -53,10 +53,11 @@
             <div>
                 <h2 class="paper-font-title pad">Fotos</h2>
                 <div id="image-row">
-                    <iron-image sizing="cover" src="http://loremflickr.com/600/400"></iron-image>
+                    <!--<iron-image sizing="cover" src="http://loremflickr.com/600/400"></iron-image>
                     <iron-image sizing="cover" src="http://loremflickr.com/600/400"></iron-image>
                     <iron-image sizing="cover" src="http://lorempixel.com/600/400"></iron-image>
-                    <iron-image sizing="cover" src="http://lorempixel.com/600/400"></iron-image>
+                    <iron-image sizing="cover" src="http://lorempixel.com/600/400"></iron-image>-->
+                    <img data-ng-src="{{'data:' + space.imgContentType + ';base64,' + space.img}}" style="max-height: 30px;" ng-if="space.img"/>
                 </div>
             </div>
             <div class="map">
