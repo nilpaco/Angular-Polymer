@@ -1,4 +1,4 @@
-<div ng-cloak>
+<!--<div ng-cloak>
     <div class="row">
         <div class="col-md-4">
             <span class="hipster img-responsive img-rounded"></span>
@@ -38,4 +38,37 @@
             </p>
         </div>
     </div>
+</div>-->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-4" ng-repeat="space in spaces track by space.id">
+            <div class="thumbnail material">
+                <a ui-sref="space.detail({id:space.id})">
+
+                    <img data-ng-src="{{'data:' + space.imgContentType + ';base64,' + space.img}}" style="height: 100px;" ng-if="space.img"/>
+                    <div class="caption">
+                        <h3>{{space.name}}</h3>
+                        <p>{{space.description}}</p>
+                        <p>
+                            <paper-button raised type="submit"
+                                    ui-sref="space.detail({id:space.id})">
+                                <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
+                            </paper-button>
+                            <paper-button type="submit" raised
+                                    ui-sref="space.edit({id:space.id})" style="background-color: #2196F3; color: white;">
+                                <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                            </paper-button>
+                            <paper-button type="submit"
+                                    ui-sref="space.delete({id:space.id})" raised style="background-color: #F44336; color: white;">
+                                <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                            </paper-button>
+                        </p>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+    </div>
 </div>
+
