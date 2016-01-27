@@ -1,55 +1,89 @@
+
 <style is="custom-style">
-    .flex-center-justified {
-        @apply(--layout-horizontal);
-        @apply(--layout-center-justified);
+    .flex-equal-justified {
+        width: 100% !important;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
     }
+    .flex-equal-between{
+        width: 100% !important;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .flex-equal-between > div {
+        width: 50%;
+    }
+    .name{
+        flex-direction: row;
+        display: flex;
+    }
+    .profile-img > h2 {
+        margin-top: 9px;
+    }
+    .profile-img > img{
+        height: 50px;
+        width: 50px;
+    }
+    .paper-input-container-0 .floated-label-placeholder.paper-input-container{
+        line-height: 8px;
+    }
+    paper-input-container{
+        padding: 0;
+    }
+    .pap{
+        display: inline-block !important;
+    }
+
 </style>
 
 <div class="container flex-center-justified">
         <paper-material elevation="1" class="over-content">
-            <div class="profile-img horizontal layout center pad">
+            <div class="profile-img center name pad">
                 <img src="http://placehold.it/50x50">
-                <h2>{{space.title}}</h2>
+                <h2>{{space.name}}</h2>
             </div>
-            <div class="horizontal around-justified layout wrap pad">
-                <div class="horizontal layout center">
+            <div class="container flex-equal-justified" style="width: 100% !important;">
+                <div>
                     <iron-icon icon="social:people" class="big"></iron-icon>
                     <span>4</span>
                 </div>
-                <div class="horizontal layout center">
+                <div>
                     <iron-icon icon="icons:event" class="big"></iron-icon>
                     <span>Sep to Dec, 2016</span>
                 </div>
-                <div class="horizontal layout center">
+                <div>
                     <iron-icon icon="icons:credit-card" class="big"></iron-icon>
-                    <span>{{space.price}}</span>
+                    <span>{{space.price}} €</span>
                 </div>
-                <div class="horizontal layout center">
+                <div>
                     <iron-icon icon="icons:query-builder" class="big"></iron-icon>
                     <span>7:00 to 18:00</span>
                 </div>
             </div>
             <div class="spacer"></div>
+            <div class="flex-equal-between">
             <div class="pad">
                 <h2 class="paper-font-title">Descripción</h2>
                 <div class="descripcion">{{space.description}}</div>
-            </div>
-            <paper-button on-click="toggle" style="color: #ff4081">+ Show more</paper-button>
-            <iron-collapse id="collapse">
-                <div class="pad">
-                    <h2 class="paper-font-title">Servicios</h2>
-                    <div class="icon-content horizontal layout wrap center" style="width: 100%">
-                        <div><iron-icon icon="notification:wifi"></iron-icon><span>Wifi</span></div>
-                        <div><iron-icon icon="maps:directions-subway"></iron-icon><span>Metro</span></div>
-                        <div><iron-icon icon="maps:local-printshop"></iron-icon><span>Impresora</span></div>
-                        <div><iron-icon icon="icons:event-seat"></iron-icon><span>Sala reuniones</span></div>
-                        <div><iron-icon icon="icons:lock"></iron-icon><span>Alarma</span></div>
-                        <div><iron-icon icon="maps:restaurant-menu"></iron-icon><span>Comedor</span></div>
-                        <div><iron-icon icon="maps:local-parking"></iron-icon><span>Parking</span></div>
-                        <div><iron-icon icon="hardware:toys"></iron-icon><span>Aire acondicionado</span></div>
+                <paper-button onclick="toggle('#collapse1')" style="color: #ff4081">+ Show more</paper-button>
+                <iron-collapse id="collapse">
+                    <div class="pad">
+                        <h2 class="paper-font-title">Servicios</h2>
+                        <div class="icon-content horizontal layout wrap center" style="width: 100%">
+                            <div><iron-icon icon="notification:wifi"></iron-icon><span>Wifi</span></div>
+                            <div><iron-icon icon="maps:directions-subway"></iron-icon><span>Metro</span></div>
+                            <div><iron-icon icon="maps:local-printshop"></iron-icon><span>Impresora</span></div>
+                            <div><iron-icon icon="icons:event-seat"></iron-icon><span>Sala reuniones</span></div>
+                            <div><iron-icon icon="icons:lock"></iron-icon><span>Alarma</span></div>
+                            <div><iron-icon icon="maps:restaurant-menu"></iron-icon><span>Comedor</span></div>
+                            <div><iron-icon icon="maps:local-parking"></iron-icon><span>Parking</span></div>
+                            <div><iron-icon icon="hardware:toys"></iron-icon><span>Aire acondicionado</span></div>
+                        </div>
                     </div>
-                </div>
-            </iron-collapse>
+                </iron-collapse>
+            </div>
             <div>
                 <h2 class="paper-font-title pad">Fotos</h2>
                 <div id="image-row">
@@ -60,17 +94,15 @@
                     <img data-ng-src="{{'data:' + space.imgContentType + ';base64,' + space.img}}" style="max-height: 30px;" ng-if="space.img"/>
                 </div>
             </div>
+            </div>
+
             <div class="map">
                 <google-map address="mare de deu dels reis, 11"></google-map>
             </div>
             <div class="spacer"></div>
-            <div class="booking pad">
-                <div class="horizontal justified layout">
-                    <div style="width: 45%"><paper-input label="Nombre"></paper-input></div>
-                    <div style="width: 45%"><paper-input typle="email" label="Email"></paper-input></div>
-                </div>
-                <paper-input label="Escribe el mensaje..."></paper-input>
-                <paper-button class="book-button" raised>Send</paper-button>
+            <div class="booking pad horizontal layout">
+                <paper-input flex class="flex" label="Escribe el mensaje..." style="display: inline-block; width: calc(100% - 3.2em)"></paper-input>
+                <paper-fab icon="send" mini class="pap"></paper-fab>
             </div>
         </paper-material>
     </div>

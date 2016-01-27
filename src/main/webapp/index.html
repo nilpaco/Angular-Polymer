@@ -50,13 +50,15 @@
                 </paper-item>
             </paper-menu>
         </paper-scroll-header-panel>
-        <paper-scroll-header-panel main condenses>
-            <paper-toolbar class="tall">
+        <paper-header-panel main mode="waterfall">
+            <paper-toolbar>
                 <paper-icon-button icon="menu" paper-drawer-toggle></paper-icon-button>
                         <span href="#/" class="title">Title</span>
+                <div style="flex: 1">
+                    <input type="search" ng-model="searchQuery" id="searchQuery" id="query" autocomplete="off" placeholder="Search Elements" class="style-scope app-bar bottom" id="caja">
+                </div>
                 <span class="bottom title flex"></span>
                 <div class="bottom">
-                    <input type="search" ng-model="searchQuery" id="searchQuery" id="query" autocomplete="off" placeholder="Search Elements" class="style-scope app-bar bottom" id="caja">
                 </div>
                 <span class="bottom title flex"></span>
             </paper-toolbar>
@@ -65,7 +67,7 @@
                 <div class="footer">
                     <p translate="footer">This is your footer</p>
                 </div>
-        </paper-scroll-header-panel>
+        </paper-header-panel>
     </paper-drawer-panel>
 
     <!-- Google Analytics: uncomment and change UA-XXXXX-X to be your site's ID.
