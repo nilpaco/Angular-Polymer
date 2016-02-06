@@ -25,7 +25,17 @@
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <!--<div ng-show="{{ENV === 'dev'}}" class="development" ng-cloak=""></div>-->
-
+<style>
+    paper-item > iron-icon{
+        width: 20px !important;
+        height: 20px !important;
+        color: rgba(0,0,0,0.54);
+        margin-right: 20px;
+    }
+    paper-item:last-child{
+        border-top: 1px solid rgba(0,0,0,0.27);
+    }
+</style>
     <paper-drawer-panel force-narrow id="paperDrawerPanel">
         <paper-scroll-header-panel drawer mode="seamed">
             <paper-toolbar>

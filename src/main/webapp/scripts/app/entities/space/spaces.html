@@ -42,39 +42,34 @@
                     <th></th>
                 </tr>
             </thead>
-            <div class="row">
-                <div class="col-sm-6 col-md-4" ng-repeat="space in spaces track by space.id">
-                        <div class="thumbnail material">
-                            <a ui-sref="space.detail({id:space.id})">
+    <div class="row">
+        <div class="col-sm-6 col-md-4" ng-repeat="space in spaces track by space.id">
+            <div class="thumbnail material">
+                <a ui-sref="space.detail({id:space.id})">
 
-                            <img data-ng-src="{{'data:' + space.imgContentType + ';base64,' + space.img}}" style="height: 100px;" ng-if="space.img"/>
-                            <div class="caption">
-                                <h3>{{space.name}}</h3>
-                                <p>{{space.description}}</p>
-                                <p>
-                                <button type="submit"
-                                        ui-sref="space.detail({id:space.id})"
-                                        class="btn btn-info btn-sm">
-                                    <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span translate="entity.action.view"> View</span>
-                                </button>
-                                <button type="submit"
-                                        ui-sref="space.edit({id:space.id})"
-                                        class="btn btn-primary btn-sm">
-                                    <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
-                                </button>
-                                <button type="submit"
-                                        ui-sref="space.delete({id:space.id})"
-                                        class="btn btn-danger btn-sm">
-                                    <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
-                                </button>
-                                </p>
-                            </div>
-                            </a>
-                        </div>
+                    <img data-ng-src="{{'data:' + space.imgContentType + ';base64,' + space.img}}" style="height: 200px;" ng-if="space.img"/>
+                </a>
 
+                <a ui-sref="space.detail({id:space.id})">
+                    <div class="caption">
+                        <h3>{{space.name}}</h3>
+                        <p style="color: rgba(0,0,0,0.54)">{{space.description}}</p>
+                        <p style="color: #43DBB9; text-align: right; font-size: 24px;font-weight: 600;">{{space.price}} €</p>
+                        <paper-button type="submit"
+                                ui-sref="space.edit({id:space.id})" style="background-color: #2196F3; color: white">
+                            <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span translate="entity.action.edit"> Edit</span>
+                        </paper-button>
+                        <paper-button type="submit"
+                                ui-sref="space.delete({id:space.id})" style="background-color: #F44336; color: white;">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span translate="entity.action.delete"> Delete</span>
+                        </paper-button>
+                    </div>
+                </a>
             </div>
 
-            </div>
+        </div>
+
+    </div>
     <div class="text-center">
         <uib-pagination class="pagination-sm" total-items="totalItems" ng-model="page" ng-change="loadAll()"></uib-pagination>
     </div>
