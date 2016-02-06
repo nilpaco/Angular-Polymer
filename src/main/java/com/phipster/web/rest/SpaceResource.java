@@ -129,7 +129,7 @@ public class SpaceResource {
      * SEARCH  /_search/spaces/:query -> search for the space corresponding
      * to the query.
      */
-    @RequestMapping(value = "/_search/spaces/{query}",
+    @RequestMapping(value = "/_search/spaces/{query:.+}",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed

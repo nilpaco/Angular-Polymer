@@ -1,5 +1,13 @@
 {
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipId" : 1,
+        "relationshipName" : "mensaje",
+        "otherEntityName" : "mensaje",
+        "relationshipType" : "one-to-many",
+        "otherEntityRelationshipName" : "space"
+        }
+    ],
     "fields": [
         {
             "fieldId": 1,

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('phipsterApp')
-    .controller('SpaceDetailController', function ($scope, $rootScope, $stateParams, DataUtils, entity, Space) {
+    .controller('SpaceDetailController', function ($scope, $rootScope, $stateParams, DataUtils, entity, Space, Mensaje) {
         $scope.space = entity;
         $scope.load = function (id) {
             Space.get({id: id}, function(result) {

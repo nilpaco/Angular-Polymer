@@ -1,11 +1,14 @@
 package com.phipster.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -23,17 +26,22 @@ public class Space implements Serializable {
 
     @Column(name = "name")
     private String name;
-
+    
     @Lob
     @Column(name = "img")
     private byte[] img;
-
+    
     @Column(name = "img_content_type")        private String imgContentType;
     @Column(name = "description")
     private String description;
-
+    
     @Column(name = "price")
     private Double price;
+    
+    @OneToMany(mappedBy = "space")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Mensaje> mensajes = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -46,7 +54,7 @@ public class Space implements Serializable {
     public String getName() {
         return name;
     }
-
+    
     public void setName(String name) {
         this.name = name;
     }
@@ -54,7 +62,7 @@ public class Space implements Serializable {
     public byte[] getImg() {
         return img;
     }
-
+    
     public void setImg(byte[] img) {
         this.img = img;
     }
@@ -70,7 +78,7 @@ public class Space implements Serializable {
     public String getDescription() {
         return description;
     }
-
+    
     public void setDescription(String description) {
         this.description = description;
     }
@@ -78,9 +86,17 @@ public class Space implements Serializable {
     public Double getPrice() {
         return price;
     }
-
+    
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Set<Mensaje> getMensajes() {
+        return mensajes;
+    }
+
+    public void setMensajes(Set<Mensaje> mensajes) {
+        this.mensajes = mensajes;
     }
 
     @Override
@@ -92,6 +108,9 @@ public class Space implements Serializable {
             return false;
         }
         Space space = (Space) o;
+        if(space.id == null || id == null) {
+            return false;
+        }
         return Objects.equals(id, space.id);
     }
 

@@ -4,7 +4,8 @@
             "home": {
                 "title": "Spaces",
                 "createLabel": "Create a new Space",
-                "createOrEditLabel": "Create or edit a Space"
+                "createOrEditLabel": "Create or edit a Space",
+                "search": "Search for Space"
             },
             "created": "A new Space is created with identifier {{ param }}",
             "updated": "A Space is updated with identifier {{ param }}",
@@ -18,7 +19,8 @@
             "name": "Name",
             "img": "Img",
             "description": "Description",
-            "price": "Price"
+            "price": "Price",
+            "mensaje": "Mensaje"
         }
     }
 }

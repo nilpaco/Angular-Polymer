@@ -22,10 +22,17 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="name" type="varchar(255)"/>
-            <column name="img" type="blob"/>
-            <column name="img_content_type" type="varchar(50)"/>
+            
+            <column name="img" type="blob" />
+            <column name="img_content_type" type="varchar(50)">
+                <constraints nullable="false" />
+            </column>
+            
             <column name="description" type="varchar(255)"/>
+            
             <column name="price" type="double"/>
+            
+            <!-- jhipster-needle-liquibase-add-column - Jhipster will add columns here, do not remove-->
         </createTable>
         
     </changeSet>

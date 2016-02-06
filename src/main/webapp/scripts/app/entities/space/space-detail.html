@@ -1,108 +1,55 @@
 
-<style is="custom-style">
-    .flex-equal-justified {
-        width: 100% !important;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-    }
-    .flex-equal-between{
-        width: 100% !important;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-    }
-    .flex-equal-between > div {
-        width: 50%;
-    }
-    .name{
-        flex-direction: row;
-        display: flex;
-    }
-    .profile-img > h2 {
-        margin-top: 9px;
-    }
-    .profile-img > img{
-        height: 50px;
-        width: 50px;
-    }
-    .paper-input-container-0 .floated-label-placeholder.paper-input-container{
-        line-height: 8px;
-    }
-    paper-input-container{
-        padding: 0;
-    }
-    .pap{
-        display: inline-block !important;
-    }
-
-</style>
-
-<div class="container flex-center-justified">
-        <paper-material elevation="1" class="over-content">
-            <div class="profile-img center name pad">
-                <img src="http://placehold.it/50x50">
-                <h2>{{space.name}}</h2>
-            </div>
-            <div class="container flex-equal-justified" style="width: 100% !important;">
-                <div>
-                    <iron-icon icon="social:people" class="big"></iron-icon>
-                    <span>4</span>
-                </div>
-                <div>
-                    <iron-icon icon="icons:event" class="big"></iron-icon>
-                    <span>Sep to Dec, 2016</span>
-                </div>
-                <div>
-                    <iron-icon icon="icons:credit-card" class="big"></iron-icon>
-                    <span>{{space.price}} €</span>
-                </div>
-                <div>
-                    <iron-icon icon="icons:query-builder" class="big"></iron-icon>
-                    <span>7:00 to 18:00</span>
-                </div>
-            </div>
-            <div class="spacer"></div>
-            <div class="flex-equal-between">
-            <div class="pad">
-                <h2 class="paper-font-title">Descripción</h2>
-                <div class="descripcion">{{space.description}}</div>
-                <paper-button onclick="toggle('#collapse1')" style="color: #ff4081">+ Show more</paper-button>
-                <iron-collapse id="collapse">
-                    <div class="pad">
-                        <h2 class="paper-font-title">Servicios</h2>
-                        <div class="icon-content horizontal layout wrap center" style="width: 100%">
-                            <div><iron-icon icon="notification:wifi"></iron-icon><span>Wifi</span></div>
-                            <div><iron-icon icon="maps:directions-subway"></iron-icon><span>Metro</span></div>
-                            <div><iron-icon icon="maps:local-printshop"></iron-icon><span>Impresora</span></div>
-                            <div><iron-icon icon="icons:event-seat"></iron-icon><span>Sala reuniones</span></div>
-                            <div><iron-icon icon="icons:lock"></iron-icon><span>Alarma</span></div>
-                            <div><iron-icon icon="maps:restaurant-menu"></iron-icon><span>Comedor</span></div>
-                            <div><iron-icon icon="maps:local-parking"></iron-icon><span>Parking</span></div>
-                            <div><iron-icon icon="hardware:toys"></iron-icon><span>Aire acondicionado</span></div>
-                        </div>
-                    </div>
-                </iron-collapse>
-            </div>
-            <div>
-                <h2 class="paper-font-title pad">Fotos</h2>
-                <div id="image-row">
-                    <!--<iron-image sizing="cover" src="http://loremflickr.com/600/400"></iron-image>
-                    <iron-image sizing="cover" src="http://loremflickr.com/600/400"></iron-image>
-                    <iron-image sizing="cover" src="http://lorempixel.com/600/400"></iron-image>
-                    <iron-image sizing="cover" src="http://lorempixel.com/600/400"></iron-image>-->
-                    <img data-ng-src="{{'data:' + space.imgContentType + ';base64,' + space.img}}" style="max-height: 30px;" ng-if="space.img"/>
-                </div>
-            </div>
-            </div>
-
-            <div class="map">
-                <google-map address="mare de deu dels reis, 11"></google-map>
-            </div>
-            <div class="spacer"></div>
-            <div class="booking pad horizontal layout">
-                <paper-input flex class="flex" label="Escribe el mensaje..." style="display: inline-block; width: calc(100% - 3.2em)"></paper-input>
-                <paper-fab icon="send" mini class="pap"></paper-fab>
-            </div>
-        </paper-material>
+<div>
+    <h2><span translate="phipsterApp.space.detail.title">Space</span> {{space.id}}</h2>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="phipsterApp.space.name">Name</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{space.name}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="phipsterApp.space.img">Img</span>
+                </td>
+                <td>
+                    <img data-ng-src="{{'data:' + space.imgContentType + ';base64,' + space.img}}" style="max-width: 100%;" ng-if="space.img"/>
+                    <div>{{space.imgContentType}}  {{byteSize(space.img)}}</div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="phipsterApp.space.description">Description</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{space.description}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="phipsterApp.space.price">Price</span>
+                </td>
+                <td>
+                    <span class="form-control-static">{{space.price}}</span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
+
+    <button type="submit"
+            onclick="window.history.back()"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

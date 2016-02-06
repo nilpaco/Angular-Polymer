@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('phipsterApp').controller('SpaceDialogController',
-    ['$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Space',
-        function($scope, $stateParams, $uibModalInstance, DataUtils, entity, Space) {
+    ['$scope', '$stateParams', '$uibModalInstance', 'DataUtils', 'entity', 'Space', 'Mensaje',
+        function($scope, $stateParams, $uibModalInstance, DataUtils, entity, Space, Mensaje) {
 
         $scope.space = entity;
+        $scope.mensajes = Mensaje.query();
         $scope.load = function(id) {
             Space.get({id : id}, function(result) {
                 $scope.space = result;
