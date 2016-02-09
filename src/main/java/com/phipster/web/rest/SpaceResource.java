@@ -1,9 +1,15 @@
 package com.phipster.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
+import com.phipster.domain.Mensaje;
 import com.phipster.domain.Space;
+import com.phipster.domain.User;
+import com.phipster.repository.MensajeRepository;
 import com.phipster.repository.SpaceRepository;
+import com.phipster.repository.UserRepository;
 import com.phipster.repository.search.SpaceSearchRepository;
+import com.phipster.security.SecurityUtils;
+import com.phipster.web.rest.dto.MessageDTO;
 import com.phipster.web.rest.util.HeaderUtil;
 import com.phipster.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
@@ -14,6 +20,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
@@ -21,6 +28,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -34,13 +42,19 @@ import static org.elasticsearch.index.query.QueryBuilders.*;
 public class SpaceResource {
 
     private final Logger log = LoggerFactory.getLogger(SpaceResource.class);
-        
+
     @Inject
     private SpaceRepository spaceRepository;
-    
+
     @Inject
     private SpaceSearchRepository spaceSearchRepository;
-    
+
+    @Inject
+    private UserRepository userRepository;
+
+    @Inject
+    private MensajeRepository mensajeRepository;
+
     /**
      * POST  /spaces -> Create a new space.
      */
@@ -89,7 +103,7 @@ public class SpaceResource {
     public ResponseEntity<List<Space>> getAllSpaces(Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of Spaces");
-        Page<Space> page = spaceRepository.findAll(pageable); 
+        Page<Space> page = spaceRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/spaces");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -139,4 +153,65 @@ public class SpaceResource {
             .stream(spaceSearchRepository.search(queryStringQuery(query)).spliterator(), false)
             .collect(Collectors.toList());
     }
+
+    @RequestMapping(value = "/spaces/{id}/mensajes",
+        method = RequestMethod.POST,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<Mensaje> addMessageToSpace(@RequestBody MessageDTO messageDTO, @PathVariable Long id) throws URISyntaxException {
+        log.debug("REST request to save Message : {}", messageDTO);
+
+        Space space = spaceRepository.findOne(id);
+
+
+        User user = userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).get();
+
+        Mensaje mensaje = new Mensaje();
+
+        mensaje.setTexto(messageDTO.getText());
+        mensaje.setUser(user);
+        mensaje.setSpace(space);
+
+        Mensaje result = mensajeRepository.save(mensaje);
+
+        return ResponseEntity.created(new URI("/api/spaces/"+id+"/mensajes/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert("mensaje", result.getId().toString()))
+            .body(result);
+    }
+
+    @Transactional
+    @RequestMapping(value = "/spaces/{id}/mensajes",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<Set<Mensaje>> getMessages(@PathVariable Long id) {
+        log.debug("REST request to get Messages: {}", id);
+        Space space = spaceRepository.findOne(id);
+
+        if(space==null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(space.getMensajes(), HttpStatus.OK);
+    }
+
+    @Transactional
+    @RequestMapping(value = "/spaces/{id}/usermessages",
+        method = RequestMethod.GET,
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    @Timed
+    public ResponseEntity<List<Mensaje>> findByUserIsCurrentUserAndSpace(@PathVariable Long id) {
+        log.debug("REST request to get Messages from User in Space: {}", id);
+        Space space = spaceRepository.findOne(id);
+
+        List<Mensaje> mensajes = mensajeRepository.findByUserIsCurrentUserAndSpace(id);
+
+        if(space==null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(mensajes, HttpStatus.OK);
+    }
+
+
 }

@@ -14,4 +14,15 @@ angular.module('phipsterApp')
         $scope.$on('$destroy', unsubscribe);
 
         $scope.byteSize = DataUtils.byteSize;
+
+        $scope.addMessage = function (){
+            Space.addMessage({id:$scope.space.id}, {text:$scope.texto});
+        }
+
+        $scope.message = function (id) {
+            Space.checkMessage({id: id}, function(result2) {
+                $scope.message = result2;
+            });
+        };
+
     });
