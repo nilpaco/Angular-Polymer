@@ -96,7 +96,7 @@
         </div>
 
         <div class="map">
-            <google-map address="mare de deu dels reis, 11"></google-map>
+            <!--<google-map address="mare de deu dels reis, 11"></google-map>-->
         </div>
         <div class="spacer"></div>
         <div class="booking pad horizontal layout">
@@ -107,6 +107,17 @@
                 </paper-input-container>
                 <input icon="send" mini class="pap" type="submit"></input>
             </form>
+
+            <div ng-if="mensajes.length > 0">
+                HOla
+            </div>
+            <div ng-if="!(mensajes.length > 0)" class="ng-hiden">
+                HOla 2
+            </div>
+
+            <div ng-repeat="message in mensajes">
+                {{message.texto}}
+            </div>
         </div>
     </paper-material>
 </div>
