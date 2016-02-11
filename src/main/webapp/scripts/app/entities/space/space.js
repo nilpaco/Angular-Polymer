@@ -44,6 +44,9 @@ angular.module('phipsterApp')
                     }],
                     entity: ['$stateParams', 'Space', function($stateParams, Space) {
                         return Space.get({id : $stateParams.id});
+                    }],
+                    mensajes: ['$stateParams', 'Space', function($stateParams, Space) {
+                        return Space.checkMessages({id : $stateParams.id});
                     }]
                 }
             })

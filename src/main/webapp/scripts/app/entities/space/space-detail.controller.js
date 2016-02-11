@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('phipsterApp')
-    .controller('SpaceDetailController', function ($scope, $rootScope, $stateParams, DataUtils, entity, Space, Mensaje) {
+    .controller('SpaceDetailController', function ($scope, $rootScope, $stateParams, DataUtils, entity, mensajes, Space, Mensaje) {
         $scope.space = entity;
+        $scope.mensajes = mensajes;
         $scope.load = function (id) {
             Space.get({id: id}, function(result) {
                 $scope.space = result;
@@ -19,12 +20,12 @@ angular.module('phipsterApp')
             Space.addMessage({id:$scope.space.id}, {text:$scope.texto});
         }
 
-        $scope.load2 = function () {
+        /*$scope.load2 = function () {
             Space.checkMessages({id:$scope.space.id}, function (result2) {
                 $scope.mensajes = result2;
             });
         };
-        $scope.load2();
+        $scope.load2();*/
 
 
     });

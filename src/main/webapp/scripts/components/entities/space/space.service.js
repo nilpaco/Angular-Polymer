@@ -13,6 +13,6 @@ angular.module('phipsterApp')
             },
             'addMessage': { method: 'POST', isArray: false, url: 'api/spaces/:id/mensajes'},
             'update': { method:'PUT' },
-            'checkMessages': {method: 'GET', isArray: true, url: 'api/spaces/:id/usermessages'}
+            'mensajesBySpace': {method: 'GET', isArray: true, url: 'api/mensajesBySpace'}
         });
     });

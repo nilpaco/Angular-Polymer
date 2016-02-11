@@ -101,7 +101,7 @@
         <div class="spacer"></div>
         <div class="booking pad horizontal layout">
             <h2 class="paper-font-title">Envia un mensaje</h2>
-            <form ng-submit="addMessage()">
+            <form ng-submit="addMessage()" ng-if="!(mensajes.length > 0)">
                 <paper-input-container flex class="flex" label="Escribe el mensaje..." style="display: inline-block; width: calc(100% - 3.2em)">
                     <input ng-model="texto" type="text" id="mensaje"></input>
                 </paper-input-container>
@@ -109,14 +109,7 @@
             </form>
 
             <div ng-if="mensajes.length > 0">
-                HOla
-            </div>
-            <div ng-if="!(mensajes.length > 0)" class="ng-hiden">
-                HOla 2
-            </div>
-
-            <div ng-repeat="message in mensajes">
-                {{message.texto}}
+                <a>Accede al chat</a>
             </div>
         </div>
     </paper-material>
