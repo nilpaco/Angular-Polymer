@@ -19,13 +19,4 @@ angular.module('phipsterApp')
         $scope.addMessage = function (){
             Space.addMessage({id:$scope.space.id}, {text:$scope.texto});
         }
-
-        /*$scope.load2 = function () {
-            Space.checkMessages({id:$scope.space.id}, function (result2) {
-                $scope.mensajes = result2;
-            });
-        };
-        $scope.load2();*/
-
-
     });

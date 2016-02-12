@@ -48,6 +48,7 @@ angular.module('phipsterApp')
                     mensajes: ['$stateParams', 'Space', function($stateParams, Space) {
                         return Space.checkMessages({id : $stateParams.id});
                     }]
+
                 }
             })
             .state('space.new', {
