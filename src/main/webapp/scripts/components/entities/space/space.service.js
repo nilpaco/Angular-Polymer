@@ -12,7 +12,6 @@ angular.module('phipsterApp')
                 }
             },
             'addMessage': { method: 'POST', isArray: false, url: 'api/spaces/:id/mensajes'},
-            'update': { method:'PUT' },
-            'mensajesBySpace': {method: 'GET', isArray: true, url: 'api/mensajesBySpace'}
+            'update': { method:'PUT' }
         });
     });
