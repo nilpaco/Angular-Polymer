@@ -26,18 +26,18 @@ public class Space implements Serializable {
 
     @Column(name = "name")
     private String name;
-    
+
     @Lob
     @Column(name = "img")
     private byte[] img;
-    
+
     @Column(name = "img_content_type")        private String imgContentType;
     @Column(name = "description")
     private String description;
-    
+
     @Column(name = "price")
     private Double price;
-    
+
     @OneToMany(mappedBy = "space")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -54,7 +54,7 @@ public class Space implements Serializable {
     public String getName() {
         return name;
     }
-    
+
     public void setName(String name) {
         this.name = name;
     }
@@ -62,7 +62,7 @@ public class Space implements Serializable {
     public byte[] getImg() {
         return img;
     }
-    
+
     public void setImg(byte[] img) {
         this.img = img;
     }
@@ -78,7 +78,7 @@ public class Space implements Serializable {
     public String getDescription() {
         return description;
     }
-    
+
     public void setDescription(String description) {
         this.description = description;
     }
@@ -86,7 +86,7 @@ public class Space implements Serializable {
     public Double getPrice() {
         return price;
     }
-    
+
     public void setPrice(Double price) {
         this.price = price;
     }

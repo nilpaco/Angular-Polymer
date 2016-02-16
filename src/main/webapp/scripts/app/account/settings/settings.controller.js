@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('phipsterApp')
-    .controller('SettingsController', function ($scope, Principal, Auth, Language, $translate) {
+    .controller('SettingsController', function ($scope, Principal, Auth, Language, $translate, $state) {
         $scope.success = null;
         $scope.error = null;
         Principal.identity().then(function(account) {
@@ -39,4 +39,9 @@ angular.module('phipsterApp')
                 login: account.login
             }
         }
+        $scope.logout = function () {
+            Auth.logout();
+            $state.go('home');
+        };
+
     });
