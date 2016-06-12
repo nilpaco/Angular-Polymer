@@ -3,7 +3,7 @@
 var fs = require('fs');
 
 var parseString = require('xml2js').parseString;
-// Returns the second occurence of the version number
+// Returns the second occurrence of the version number
 var parseVersionFromPomXml = function() {
     var version;
     var pomXml = fs.readFileSync('pom.xml', "utf8");
